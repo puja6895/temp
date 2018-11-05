@@ -28,4 +28,7 @@ Route::post('/setting/update', 'SettingController@updateSettings')->name('settin
 Route::get('/units', 'MasterController@getUnits')->name('master.units');
 Route::get('/unit/add', 'MasterController@addUnit')->name('master.unit.add');
 Route::post('/unit/store', 'MasterController@storeUnit')->name('master.unit.store');
+Route::get('/unit/edit/{id}', 'MasterController@editUnit')->name('master.unit.edit');
+Route::post('/unit/update', 'MasterController@updateUnit')->name('master.unit.update');
+Route::get('/unit/status/{id}', 'MasterController@statusUnit')->name('master.unit.status');
 

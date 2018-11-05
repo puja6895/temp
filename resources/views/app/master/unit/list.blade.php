@@ -60,15 +60,15 @@
                   	@endif
                   </td>
                   <td>
-                  	<a href="">
+                  	<a href="{{route('master.unit.edit',['id'=>$unit->unit_id])}}">
                   		<button class="btn btn-sm btn-info">Edit</button>
                   	</a>
                   	@if($unit->status == 1)
-                  		<a href="">
+                  		<a href="{{route('master.unit.status',['id'=>$unit->unit_id])}}">
                   			<button class="btn btn-sm btn-danger">Disable</button>
                   		</a>
                   	@else
-                  		<a href="">
+                  		<a href="{{route('master.unit.status',['id'=>$unit->unit_id])}}">
                   			<button class="btn btn-sm btn-success">Enable</button>
                   		</a>
                   	@endif
