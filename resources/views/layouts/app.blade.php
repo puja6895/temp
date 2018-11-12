@@ -141,7 +141,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Customer List</a></li>
+            <li><a href="{{route('customers')}}"><i class="fa fa-circle-o"></i> Customer List</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> Customer Ladger</a></li>
           </ul>
         </li>
@@ -157,7 +157,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Purchaser List</a></li>
+            <li><a href="{{route('purchasers')}}"><i class="fa fa-circle-o"></i> Purchaser List</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> Purchaser Ladger</a></li>
           </ul>
         </li>
@@ -201,8 +201,8 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('master.units')}}"><i class="fa fa-circle-o"></i> Unit</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Payment Mode</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Categories</a></li>
+            <li><a href="{{route('master.payment-mode')}}"><i class="fa fa-circle-o"></i> Payment Mode</a></li>
+            <li><a href="{{route('master.category')}}"><i class="fa fa-circle-o"></i> Categories</a></li>
           </ul>
         </li>
 
