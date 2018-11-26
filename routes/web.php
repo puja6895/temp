@@ -65,5 +65,11 @@ Route::get('/purchaser/edit/{purchaser_id}', 'PurchaserController@edit')->name('
 Route::post('/purchaser/update', 'PurchaserController@update')->name('purchaser.update');
 Route::get('/purchaser/status/{id}', 'PurchaserController@statusPurchaser')->name('purchaser.status');
 
-
+#Product And Material
+Route::get('/products', 'ProductController@index')->name('products');
+Route::get('/products/add', 'ProductController@create')->name('product.add');
+Route::post('/product/store', 'ProductController@store')->name('product.store');
+Route::get('/product/edit/{product_id}', 'ProductController@edit')->name('product.edit');
+Route::post('/product/update', 'ProductController@update')->name('product.update');
+Route::get('/product/status/{id}', 'ProductController@statusProduct')->name('product.status');
 

@@ -172,7 +172,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Product/Material List</a></li>
+            <li><a href="{{route('products')}}"><i class="fa fa-circle-o"></i> Product/Material List</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> Product/Material Ladger</a></li>
           </ul>
         </li>

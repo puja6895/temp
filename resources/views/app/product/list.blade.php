@@ -5,12 +5,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Customers
-        <small>All Customers</small>
+        Products
+        <small>All Products</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Customers</li>
+        <li class="active">Products</li>
       </ol>
     </section>
 
@@ -33,8 +33,8 @@
 	        {{-- End Alert Message --}}
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Customers</h3>
-              <a href="{{route('customer.add')}}" class="pull-right">
+              <h3 class="box-title">Products</h3>
+              <a href="{{route('product.add')}}" class="pull-right">
               	<button class="btn btn-info"><b>Add New+</b></button>
               </a>
             </div>
@@ -43,38 +43,34 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Customer Name</th>
-                  <th>Mobile</th>
-                  <th>Email</th>
-                  <th>Address</th>
+                  <th>Product / Material</th>
+                  <th>Category</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($customers as $customer)
+                @foreach($products as $product)
                 <tr>
-                  <td>{{$customer->customer_name}}</td>
-                  <td>{{$customer->customer_mobile}}</td>
-                  <td>{{$customer->customer_email ? $customer->customer_email : 'N/A'}}</td>
-                  <td>{{$customer->customer_address ? $customer->customer_address : 'N/A'}}</td>
+                  <td>{{$product->product_name}}</td>
+                  <td>{{$product->category->category}}</td>
                   <td>
-                  	@if($customer->customer_status == 1)
+                  	@if($product->product_status == 1)
                   		<label class="label label-success">Active</label>
                   	@else
                   		<label class="label label-danger">Inactive</label>
                   	@endif
                   </td>
                   <td>
-                  	<a href="{{route('customer.edit',['id'=>$customer->customer_id])}}">
+                  	<a href="{{route('product.edit',['id'=>$product->product_id])}}">
                   		<button class="btn btn-sm btn-info">Edit</button>
                   	</a>
-                  	@if($customer->customer_status == 1)
-                  		<a href="{{route('customer.status',['id'=>$customer->customer_id])}}">
+                  	@if($product->product_status == 1)
+                  		<a href="{{route('product.status',['id'=>$product->product_id])}}">
                   			<button class="btn btn-sm btn-danger">Disable</button>
                   		</a>
                   	@else
-                  		<a href="{{route('customer.status',['id'=>$customer->customer_id])}}">
+                  		<a href="{{route('product.status',['id'=>$product->product_id])}}">
                   			<button class="btn btn-sm btn-success">Enable</button>
                   		</a>
                   	@endif
@@ -84,10 +80,8 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Customer Name</th>
-                  <th>Mobile</th>
-                  <th>Email</th>
-                  <th>Address</th>
+                 <th>Product / Material</th>
+                  <th>Category</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>

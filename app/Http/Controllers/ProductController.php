@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use View;
+use DB;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -14,7 +17,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        //Get All Products And Return To View
+        $products = Product::all();
+
+        return View::make('app.product.list')->with(['products'=>$products]);
     }
 
     /**
@@ -24,7 +30,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        // Get All Categories
+        $categories = Category::all();
+
+        //Return To Add Product View
+        return View::make('app.product.add')->with(['categories'=>$categories]);
     }
 
     /**
@@ -35,7 +45,30 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate
+        $this->validate($request, [
+                    'product_name'     => 'required',
+                    'category_id'     => 'required|exists:categories',
+                ]);
+
+        try{
+            // DB Transection Begin
+            DB::beginTransaction();
+
+            // Save Product
+            $product = new Product;
+            $product->product_name = $request->product_name;
+            $product->category_id = $request->category_id;
+            $product->save();
+
+            DB::commit();
+            // Return To Listing Page
+            return redirect()->route('products');
+
+        }catch(\Exception $e){
+            DB::rollBack();
+            return back()->with('error',$e->getMessage())->withInput();
+        }
     }
 
     /**
@@ -55,9 +88,21 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Product $product,$product_id)
     {
-        //
+        //Is Valid 
+        $is_valid = Product::find($product_id);
+
+        if ($is_valid) {
+            // Get All Categories
+            $categories = Category::all();
+            # Valid Then Return TO Edit Page With Data
+            return View::make('app.product.edit')->with(['product'=>$is_valid,'categories'=>$categories]);
+        } else {
+            # InVlid Then Return Back With Error
+            return back()->with('error','Invalid Product ID Please Try With Valid ID.');
+        }
+        
     }
 
     /**
@@ -69,7 +114,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+
+        //Validate
+        $this->validate($request, [
+                    'product_id'     => 'required|exists:products',
+                    'product_name'     => 'required',
+                    'category_id'     => 'required|exists:categories',
+                ]);
+                
+        try{
+            // DB Transection Begin
+            DB::beginTransaction();
+
+            // Update Product
+            $product =  Product::find($request->product_id);
+            $product->product_name = $request->product_name;
+            $product->category_id = $request->category_id;
+            $product->save();
+
+            DB::commit();
+            // Return To Listing Page
+            return redirect()->route('products');
+
+        }catch(\Exception $e){
+            DB::rollBack();
+            return back()->with('error',$e->getMessage())->withInput();
+        }
     }
 
     /**
@@ -81,5 +151,34 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    // Product Disable And Enable
+    public function statusProduct($product_id)
+    {
+        # Validation
+        $is_valid = Product::find($product_id);
+
+        if ($is_valid) {
+            # Change Status And Return Back
+            if ($is_valid->product_status == 1) {
+                # Make Status To 0
+                $is_valid->product_status = 0;
+                $is_valid->save();
+
+                return redirect()->route('products')->with('success','Product Disabled SuccessFully.');
+                
+            } else {
+                # Make status to 1
+                $is_valid->product_status = 1;
+                $is_valid->save();
+
+                return redirect()->route('products')->with('success','Product Enabled SuccessFully.');
+            }
+
+        } else {
+            # Return With Invalid Product Id Error
+            return back()->with('error','Invalid Product Id Please Try With Correct One');
+        }
     }
 }

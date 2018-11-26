@@ -6,12 +6,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Customers
-        <small>Add Customer</small>
+        Products / Materials
+        <small>Add Product</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Customer</li>
+        <li class="active">Product / Material</li>
       </ol>
     </section>
 
@@ -40,72 +40,53 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Add Customer</h3>
-              <a href="{{route('customers')}}" class="pull-right">
+              <h3 class="box-title">Add Product / Material</h3>
+              <a href="{{route('products')}}" class="pull-right">
               	<button class="btn btn-primary">Back</button>
               </a>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="POST" action="{{route('customer.store')}}">
+            <form method="POST" action="{{route('product.store')}}">
             @csrf
               <div class="box-body">
-                {{-- Customer Name --}}
-                <div class="form-group {{ $errors->has('customer_name') ? ' has-error' : '' }}">
-                  <label for="Customer_Name">Customer Name
+                {{-- Product Name --}}
+                <div class="form-group {{ $errors->has('product_name') ? ' has-error' : '' }}">
+                  <label for="Product_Name">Product Name
                   <span style="color: red;">*</span>
                   </label>
-                  <input name="customer_name" required type="text" class="form-control" id="customer_name" placeholder="Enter Name Of Customer" value="{{old('customer_name') }}">
-                   	@if ($errors->has('customer_name'))
+                  <input name="product_name" required type="text" class="form-control" id="product_name" placeholder="Enter Name Of Product" value="{{old('product_name') }}">
+                   	@if ($errors->has('product_name'))
 	                  <span class="help-block">
-	                      <strong>{{ $errors->first('customer_name') }}</strong>
+	                      <strong>{{ $errors->first('product_name') }}</strong>
 	                  </span>
                   	@endif
                 </div>
 
-                {{-- Customer Email --}}
-                <div class="form-group {{ $errors->has('customer_email') ? ' has-error' : '' }}">
-                  <label for="customer_email">Customer Email</label>
-                  <input name="customer_email" type="text" class="form-control" id="customer_email" placeholder="Enter Email Of Customer" value="{{old('customer_email') }}">
-                    @if ($errors->has('customer_email'))
+                {{-- Product Category --}}
+                <div class="form-group {{ $errors->has('category_id') ? ' has-error' : '' }}">
+                  <label for="category_id">Select Category</label>
+                  <select class="form-control" name="category_id">
+                    <option selected="" disabled="">Please Select Category</option>
+                    @foreach($categories as $category)
+                      <option value="{{$category->category_id}}">
+                        {{$category->category}}
+                      </option>
+                    @endforeach
+                  </select>
+                    @if ($errors->has('category_id'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('customer_email') }}</strong>
+                        <strong>{{ $errors->first('category_id') }}</strong>
                     </span>
                     @endif
                 </div>
-
-
-              {{-- Customer Mobile --}}
-              <div class="form-group {{ $errors->has('customer_mobile') ? ' has-error' : '' }}">
-                  <label for="customer_mobile">Customer Mobile</label>
-                  <span style="color: red;">*</span>
-                  <input name="customer_mobile" required type="text" class="form-control" id="customer_mobile" placeholder="Enter Mobile Of Customer" value="{{old('customer_mobile') }}">
-                    @if ($errors->has('customer_mobile'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('customer_mobile') }}</strong>
-                    </span>
-                    @endif
-                </div>
-
-              {{-- Customer Address --}}
-              <div class="form-group {{ $errors->has('customer_address') ? ' has-error' : '' }}">
-                  <label for="customer_address">Customer Address</label>
-                  <input name="customer_address" type="text" class="form-control" id="customer_address" placeholder="Enter Address Of Customer" value="{{old('customer_address') }}">
-                    @if ($errors->has('customer_address'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('customer_address') }}</strong>
-                    </span>
-                    @endif
-                </div>
-
 
               </div>
-
-
+              
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Add Customer</button>
+                <button type="submit" class="btn btn-primary">Add Product</button>
               </div>
             </form>
           </div>
