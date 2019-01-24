@@ -5,12 +5,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Products
-        <small>All Products</small>
+        Defaults
+        <small>Product Sell</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Products</li>
+        <li class="active">Defaults</li>
       </ol>
     </section>
 
@@ -33,8 +33,8 @@
 	        {{-- End Alert Message --}}
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Products</h3>
-              <a href="{{route('product.add')}}" class="pull-right">
+              <h3 class="box-title">Default Product Sell</h3>
+              <a href="{{route('default.product.sell.add')}}" class="pull-right">
               	<button class="btn btn-info"><b>Add New+</b></button>
               </a>
             </div>
@@ -43,48 +43,31 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Product / Material</th>
-                  <th>Category</th>
-                  <th>GST(IN %)</th>
-                  <th>Status</th>
+                  <th>Sr.NO</th>
+                  <th>Product Name</th>
+                  <th>Sell Price</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($products as $product)
+                @foreach($product_sell_defaults as $index => $product_sell_default)
                 <tr>
-                  <td>{{$product->product_name}}</td>
-                  <td>{{$product->category->category}}</td>
-                  <td>{{$product->gst}} %</td>
+                  <td>{{$index + 1}}</td>
+                  <td>{{$product_sell_default->product->product_name}}</td>
+                  <td> <i class="fa fa-inr fa-lg"></i>  {{$product_sell_default->sell_price}} / {{$product_sell_default->unit->unit_name}}</td>
                   <td>
-                  	@if($product->product_status == 1)
-                  		<label class="label label-success">Active</label>
-                  	@else
-                  		<label class="label label-danger">Inactive</label>
-                  	@endif
-                  </td>
-                  <td>
-                  	<a href="{{route('product.edit',['id'=>$product->product_id])}}">
+                  	<a href="{{route('default.product.sell.edit',['id'=>$product_sell_default->default_product_sell_id])}}">
                   		<button class="btn btn-sm btn-info">Edit</button>
                   	</a>
-                  	@if($product->product_status == 1)
-                  		<a href="{{route('product.status',['id'=>$product->product_id])}}">
-                  			<button class="btn btn-sm btn-danger">Disable</button>
-                  		</a>
-                  	@else
-                  		<a href="{{route('product.status',['id'=>$product->product_id])}}">
-                  			<button class="btn btn-sm btn-success">Enable</button>
-                  		</a>
-                  	@endif
                   </td>
                 </tr>
                 @endforeach
                 </tbody>
                 <tfoot>
                 <tr>
-                 <th>Product / Material</th>
-                  <th>Category</th>
-                  <th>Status</th>
+                  <th>Sr.NO</th>
+                  <th>Product Name</th>
+                  <th>Sell Price</th>
                   <th>Action</th>
                 </tr>
                 </tfoot>

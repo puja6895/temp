@@ -9,10 +9,10 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
-    return view('auth.login');
+	return view('auth.login');
 });
 
 Auth::routes();
@@ -73,3 +73,37 @@ Route::get('/product/edit/{product_id}', 'ProductController@edit')->name('produc
 Route::post('/product/update', 'ProductController@update')->name('product.update');
 Route::get('/product/status/{id}', 'ProductController@statusProduct')->name('product.status');
 
+#Lorry CRUD
+Route::get('/lorries', 'LorryController@index')->name('lorries');
+Route::get('/lorries/add', 'LorryController@create')->name('lorry.add');
+Route::post('/lorry/store', 'LorryController@store')->name('lorry.store');
+Route::get('/lorry/edit/{lorry_id}', 'LorryController@edit')->name('lorry.edit');
+Route::post('/lorry/update', 'LorryController@update')->name('lorry.update');
+Route::get('/lorry/status/{id}', 'LorryController@statusLorry')->name('lorry.status');
+
+#Deafult Set
+#Sell Product Default
+Route::get('/default/product/sell', 'DefaultController@defaultProductSell')->name('default.product.sell');
+Route::get('/default/product/add', 'DefaultController@addViewDefaultProductSell')->name('default.product.sell.add');
+Route::post('/default/product/store', 'DefaultController@addDefaultProductSell')->name('default.product.sell.store');
+Route::get('/default/product/edit/{id}', 'DefaultController@editDefaultProductSell')->name('default.product.sell.edit');
+Route::post('/default/product/update', 'DefaultController@updateDefaultProductSell')->name('default.product.sell.update');
+Route::get('product/default/{product_id}', 'DefaultController@getDefault')->name('default.product.price');
+
+#sell
+Route::get('/sell', 'SellController@index')->name('sell');
+Route::get('/sell/add', 'SellController@create')->name('sell.add');
+Route::get('/sell/view/{sell_id}', 'SellController@show')->name('sell.show');
+Route::post('/sell/store', 'SellController@store')->name('sell.store');
+
+#Purchase
+Route::get('/purchase', 'PurchaseController@index')->name('purchase');
+Route::get('/purchase/add', 'PurchaseController@create')->name('purchase.add');
+Route::get('/purchase/view/{purchase_id}', 'PurchaseController@show')->name('purchase.show');
+Route::post('/purchase/store', 'PurchaseController@store')->name('purchase.store');
+
+#Inventory
+Route::get('/inventory', 'InventoryController@index')->name('inventory');
+Route::get('/inventory/add', 'InventoryController@create')->name('inventory.add');
+Route::post('/inventory/store', 'InventoryController@store')->name('inventory.store');
+Route::get('/inventory/log', 'InventoryController@inventoryLog')->name('inventory.log');

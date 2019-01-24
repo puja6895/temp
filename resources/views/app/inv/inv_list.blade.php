@@ -5,12 +5,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Products
-        <small>All Products</small>
+        Inventory
+        <small>All Stock</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Products</li>
+        <li class="active">Inventory</li>
       </ol>
     </section>
 
@@ -30,11 +30,13 @@
 	            <strong>Error!</strong> {{ Session::get('error') }}
 	          </div>
 	        @endif
+
 	        {{-- End Alert Message --}}
+
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Products</h3>
-              <a href="{{route('product.add')}}" class="pull-right">
+              <h3 class="box-title">Inventory</h3>
+              <a href="{{route('inventory.add')}}" class="pull-right">
               	<button class="btn btn-info"><b>Add New+</b></button>
               </a>
             </div>
@@ -43,38 +45,25 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Product / Material</th>
-                  <th>Category</th>
-                  <th>GST(IN %)</th>
+                  <th>Sr.No</th>
+                  <th>Product Name</th>
+                  <th>Stock</th>
                   <th>Status</th>
-                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($products as $product)
+                @foreach($inventories as $index => $inv)
                 <tr>
-                  <td>{{$product->product_name}}</td>
-                  <td>{{$product->category->category}}</td>
-                  <td>{{$product->gst}} %</td>
+                  <td>{{$index+1}}</td>
+                  <td>{{$inv->product->product_name}}</td>
+                  <td>{{$inv->stock}} - {{$inv->unit->unit_name}}</td>
                   <td>
-                  	@if($product->product_status == 1)
-                  		<label class="label label-success">Active</label>
-                  	@else
-                  		<label class="label label-danger">Inactive</label>
-                  	@endif
-                  </td>
-                  <td>
-                  	<a href="{{route('product.edit',['id'=>$product->product_id])}}">
-                  		<button class="btn btn-sm btn-info">Edit</button>
-                  	</a>
-                  	@if($product->product_status == 1)
-                  		<a href="{{route('product.status',['id'=>$product->product_id])}}">
-                  			<button class="btn btn-sm btn-danger">Disable</button>
-                  		</a>
-                  	@else
-                  		<a href="{{route('product.status',['id'=>$product->product_id])}}">
-                  			<button class="btn btn-sm btn-success">Enable</button>
-                  		</a>
+                  	@if($inv->stock > 10)
+                  		<label class="label label-success">In Stock</label>
+                  	@elseif($inv->stock < 10 && $inv->stock > 0)
+                  		<label class="label label-warning">Low Stock</label>
+                    @elseif($inv->stock < 1)
+                      <label class="label label-danger">Out Of Stock</label>
                   	@endif
                   </td>
                 </tr>
@@ -82,10 +71,10 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                 <th>Product / Material</th>
-                  <th>Category</th>
+                   <th>Sr.No</th>
+                  <th>Product Name</th>
+                  <th>Stock</th>
                   <th>Status</th>
-                  <th>Action</th>
                 </tr>
                 </tfoot>
               </table>

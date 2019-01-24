@@ -5,12 +5,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Products
-        <small>All Products</small>
+        Purchase
+        <small>All Purchase</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Products</li>
+        <li class="active">Purchase</li>
       </ol>
     </section>
 
@@ -33,8 +33,8 @@
 	        {{-- End Alert Message --}}
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Products</h3>
-              <a href="{{route('product.add')}}" class="pull-right">
+              <h3 class="box-title">Purchase</h3>
+              <a href="{{route('purchase.add')}}" class="pull-right">
               	<button class="btn btn-info"><b>Add New+</b></button>
               </a>
             </div>
@@ -43,48 +43,37 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Product / Material</th>
-                  <th>Category</th>
-                  <th>GST(IN %)</th>
-                  <th>Status</th>
+                  <th>Purchase From</th>
+                  <th>Purchase Date</th>
+                  <th>Due Date</th>
+                  <th>Amount</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($products as $product)
+                @foreach($purchases as $purchase)
                 <tr>
-                  <td>{{$product->product_name}}</td>
-                  <td>{{$product->category->category}}</td>
-                  <td>{{$product->gst}} %</td>
+                  <td>{{$purchase->purchaser->purchaser_name}}</td>
+                  <td>{{\Carbon\Carbon::parse($purchase->purchase_date)->format('d-m-Y')}}</td>
+                  <td>{{\Carbon\Carbon::parse($purchase->due_date)->format('d-m-Y')}}</td>
+                  <td>  <b><i class="fa fa-inr"></i> {{$purchase->purchase_amount->grand_total}} </b></td>
+
                   <td>
-                  	@if($product->product_status == 1)
-                  		<label class="label label-success">Active</label>
-                  	@else
-                  		<label class="label label-danger">Inactive</label>
-                  	@endif
-                  </td>
-                  <td>
-                  	<a href="{{route('product.edit',['id'=>$product->product_id])}}">
+                    <a href="{{route('purchase.show',['id'=>$purchase->purchase_id])}}">
+                      <button class="btn btn-sm btn-success">View</button>
+                    </a>
+                  	<!-- <a href="{{route('product.edit',['id'=>$purchase->purchase_id])}}">
                   		<button class="btn btn-sm btn-info">Edit</button>
-                  	</a>
-                  	@if($product->product_status == 1)
-                  		<a href="{{route('product.status',['id'=>$product->product_id])}}">
-                  			<button class="btn btn-sm btn-danger">Disable</button>
-                  		</a>
-                  	@else
-                  		<a href="{{route('product.status',['id'=>$product->product_id])}}">
-                  			<button class="btn btn-sm btn-success">Enable</button>
-                  		</a>
-                  	@endif
+                  	</a> -->
                   </td>
                 </tr>
                 @endforeach
                 </tbody>
                 <tfoot>
                 <tr>
-                 <th>Product / Material</th>
-                  <th>Category</th>
-                  <th>Status</th>
+                  <th>Purchase From</th>
+                  <th>Date</th>
+                  <th>Amount</th>
                   <th>Action</th>
                 </tr>
                 </tfoot>

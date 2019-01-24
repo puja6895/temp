@@ -15,13 +15,13 @@
       </ol>
     </section>
 
-    
+
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
         <div class="col-md-12">
-        
+
         <!-- Alert Message -->
         @if (Session::has('success'))
          <div class="alert alert-success alert-dismissible" role="alert">
@@ -40,7 +40,7 @@
           </div>
         @endif
         {{-- End Alert Message --}}
-        
+
         <!-- left column -->
           <!-- general form elements -->
           <div class="box box-primary">
@@ -80,6 +80,19 @@
                     @if ($errors->has('category_id'))
                     <span class="help-block">
                         <strong>{{ $errors->first('category_id') }}</strong>
+                    </span>
+                    @endif
+                </div>
+
+                 {{-- GST --}}
+                <div class="form-group {{ $errors->has('gst') ? ' has-error' : '' }}">
+                  <label for="Product_Name">GST (In %)
+                  <span style="color: red;">*</span>
+                  </label>
+                  <input name="gst" required type="number" class="form-control" id="gst" placeholder="Enter Name Of Product" value="{{$product->gst }}">
+                    @if ($errors->has('gst'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('gst') }}</strong>
                     </span>
                     @endif
                 </div>

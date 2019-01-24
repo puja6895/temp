@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+
   {{-- Design And Developed By TechTool India Pvt Ltd --}}
    <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -12,6 +12,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{asset('admin/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('admin/bower_components/font-awesome/css/font-awesome.min.css')}}">
   <!-- Ionicons -->
@@ -25,18 +26,147 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('admin/dist/css/skins/_all-skins.min.css')}}">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="{{asset('admin/bower_components/morris.js/morris.css')}}">
+  <!-- <link rel="stylesheet" href="{{asset('admin/bower_components/morris.js/morris.css')}}"> -->
   <!-- jvectormap -->
   <link rel="stylesheet" href="{{asset('admin/bower_components/jvectormap/jquery-jvectormap.css')}}">
   <!-- Date Picker -->
   <link rel="stylesheet" href="{{asset('admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+
+  <link rel="stylesheet" href="{{asset('admin/plugins/iCheck/all.css')}}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{asset('admin/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
+
+  <!-- Select2 -->
+  <!-- <link rel="stylesheet" href="{{asset('admin/bower_components/select2/dist/css/select2.min.css')}}"> -->
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('icon.png') }}">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <style>
+/* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: visible;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+</style>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -47,7 +177,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>V</b>TD</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Vivekanand</b>Traders</span>
+      <span class="logo-lg"><b>Vivekanand</b> Traders</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -58,7 +188,7 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          
+
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -74,7 +204,7 @@
                   {{Auth::user()->name}} - Admin
                 </p>
               </li>
-              
+
               <!-- Menu Footer-->
               <li class="user-footer">
                {{--  <div class="pull-left">
@@ -91,7 +221,7 @@
               </li>
             </ul>
           </li>
-          
+
         </ul>
       </div>
     </nav>
@@ -131,6 +261,21 @@
           </a>
         </li>
 
+        {{-- POS --}}
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-paypal"></i>
+            <span>POS</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('sell')}}"><i class="fa fa-inr"></i> Sell </a></li>
+            <li><a href="{{route('purchase')}}"><i class="fa fa-shopping-cart"></i> Purchase</a></li>
+          </ul>
+        </li>
+
         {{-- Customers --}}
         <li class="treeview">
           <a href="#">
@@ -142,12 +287,12 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('customers')}}"><i class="fa fa-circle-o"></i> Customer List</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Customer Ladger</a></li>
+            <!-- <li><a href=""><i class="fa fa-circle-o"></i> Customer Ladger</a></li> -->
           </ul>
         </li>
 
         {{-- Purchaser --}}
-       
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-user-secret"></i>
@@ -158,11 +303,25 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('purchasers')}}"><i class="fa fa-circle-o"></i> Purchaser List</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Purchaser Ladger</a></li>
+            <!-- <li><a href=""><i class="fa fa-circle-o"></i> Purchaser Ladger</a></li> -->
+          </ul>
+        </li>
+        <!-- Inventory -->
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-list"></i>
+            <span>Inventory</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('inventory')}}"><i class="fa fa-circle-o"></i> Stock Inventory</a></li>
+            <li><a href="{{route('inventory.log')}}"><i class="fa fa-circle-o"></i> Inventory Log</a></li>
           </ul>
         </li>
 
-        {{-- Inventory --}}
+        {{-- Product --}}
         <li class="treeview">
           <a href="#">
             <i class="fa fa-product-hunt "></i>
@@ -173,7 +332,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('products')}}"><i class="fa fa-circle-o"></i> Product/Material List</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Product/Material Ladger</a></li>
+            <!-- <li><a href=""><i class="fa fa-circle-o"></i> Product/Material Ladger</a></li> -->
           </ul>
         </li>
 
@@ -186,8 +345,23 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Lorry Trip</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Lorry Expencess</a></li>
+            <li><a href="{{route('lorries')}}"><i class="fa fa-circle-o"></i> Lorry </a></li>
+            <!-- <li><a href=""><i class="fa fa-circle-o"></i> Lorry Trip</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Lorry Expencess</a></li> -->
+          </ul>
+        </li>
+
+        {{-- Default SET --}}
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i> <span>Set Deafaults</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('default.product.sell')}}"><i class="fa fa-circle-o"></i> Products Defaults </a></li>
+            <!-- <li><a href=""><i class="fa fa-circle-o"></i> Report Defaults</a></li> -->
           </ul>
         </li>
 
@@ -221,14 +395,14 @@
   @yield('content')
 
   <footer class="main-footer">
-    {{-- <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
-    </div> --}}
+     <div class="pull-right hidden-xs">
+      <b>Version</b> 1.1.0
+    </div>
     <strong>Copyright &copy; 2018 <a href="https://techtoolindia.com">TechTool India Pvt Ltd</a>.</strong> All rights
     reserved.
   </footer>
 
- 
+
 </div>
 <!-- ./wrapper -->
 
@@ -246,10 +420,13 @@
 <script src="{{asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 
-
+<!-- Select2 -->
+<!-- <script src="{{asset('admin/bower_components/select2/dist/js/select2.full.min.js')}}"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
 <!-- Morris.js charts -->
-<script src="{{asset('admin/bower_components/raphael/raphael.min.js')}}"></script>
-<script src="{{asset('admin/bower_components/morris.js/morris.min.js')}}"></script>
+<!-- <script src="{{asset('admin/bower_components/raphael/raphael.min.js')}}"></script>
+<script src="{{asset('admin/bower_components/morris.js/morris.min.js')}}"></script> -->
 <!-- Sparkline -->
 <script src="{{asset('admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js')}}"></script>
 <!-- jvectormap -->
@@ -271,9 +448,27 @@
 <!-- AdminLTE App -->
 <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>
+<!-- <script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+
+<!-- InputMask -->
+<script src="{{asset('admin/plugins/input-mask/jquery.inputmask.js')}}"></script>
+<script src="{{asset('admin/plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
+<script src="{{asset('admin/plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
+<!-- date-range-picker -->
+<script src="{{asset('admin/bower_components/moment/min/moment.min.js')}}"></script>
+<script src="{{asset('admin/bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+<!-- bootstrap datepicker -->
+<script src="{{asset('admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+<!-- bootstrap color picker -->
+<script src="{{asset('admin/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
+<!-- bootstrap time picker -->
+<script src="{{asset('admin/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
+<!-- SlimScroll -->
+<script src="{{asset('admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<!-- iCheck 1.0.1 -->
+<script src="{{asset('admin/plugins/iCheck/icheck.min.js')}}"></script>
 
 <script>
   $(function () {
@@ -285,8 +480,18 @@
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true
+    });
+
+    $('.select2').select2();
+
+    //Date picker
+    $('.datepicker').datepicker({
+      format: 'dd-mm-yyyy',
+      autoclose: true
     })
   })
 </script>
+
+@yield('scripts')
 </body>
 </html>
