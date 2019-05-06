@@ -151,12 +151,10 @@ class PurchaseController extends Controller {
 
 			DB::commit();
 			return redirect()->route('purchase.show', ['id' => $purchase_id])->with('success', 'Purchase Recorded SuccessFully.');
-
 		} catch (\Exception $e) {
 			DB::rollBack();
 			return back()->with('error', $e->getMessage())->withInput();
 		}
-
 	}
 
 	/**
@@ -166,8 +164,8 @@ class PurchaseController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Purchase $purchase, $purchase_id) {
-		$purchase = Purchase::where('purchase_id', $purchase_id)->first();
-
+		$purchase = Purchase::with('purchase_payments.mode')->where('purchase_id', $purchase_id)->with('purchase_payments')->first();
+		// dd($purchase->purchase_payments);
 		if (!$purchase) {
 			# code...
 			return back()->with('error', 'Invalid Purchase Not Found.');

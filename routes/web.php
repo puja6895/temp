@@ -107,3 +107,8 @@ Route::get('/inventory', 'InventoryController@index')->name('inventory');
 Route::get('/inventory/add', 'InventoryController@create')->name('inventory.add');
 Route::post('/inventory/store', 'InventoryController@store')->name('inventory.store');
 Route::get('/inventory/log', 'InventoryController@inventoryLog')->name('inventory.log');
+
+#Payables
+Route::get('/payables', 'FinancialController@getPayables')->name('payables.list');
+Route::get('/payables/pay/{purchase_id}', 'FinancialController@payablesPayment')->name('payables.payment');
+Route::post('/payables/pay', 'FinancialController@capturePayablesPayment')->name('payables.payment.capture');
