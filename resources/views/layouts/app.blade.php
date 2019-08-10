@@ -307,13 +307,13 @@
 					<li class="treeview">
 						<a href="#">
 							<i class="fa fa-users"></i>
-							<span>Customer</span>
+							<span>Clients</span>
 							<span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="{{route('customers')}}"><i class="fa fa-circle-o"></i> Customer List</a></li>
+							<li><a href="{{route('customers')}}"><i class="fa fa-circle-o"></i> Client List</a></li>
 							<!-- <li><a href=""><i class="fa fa-circle-o"></i> Customer Ladger</a></li> -->
 						</ul>
 					</li>
@@ -323,13 +323,13 @@
 					<li class="treeview">
 						<a href="#">
 							<i class="fa fa-user-secret"></i>
-							<span>Purchaser</span>
+							<span>Suppliers</span>
 							<span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="{{route('purchasers')}}"><i class="fa fa-circle-o"></i> Purchaser List</a></li>
+							<li><a href="{{route('purchasers')}}"><i class="fa fa-circle-o"></i> Supplier List</a></li>
 							<!-- <li><a href=""><i class="fa fa-circle-o"></i> Purchaser Ladger</a></li> -->
 						</ul>
 					</li>
@@ -423,7 +423,7 @@
 
 		<footer class="main-footer">
 			<div class="pull-right hidden-xs">
-				<b>Version</b> 2.1.0
+				<b>Version</b> 1.1.0
 			</div>
 			<strong>Copyright &copy; {{date('Y')}} <a href="https://techtoolindia.com">TechTool India (SENTRIQO IT SOLUTIONS PVT LTD)</a>.</strong> All rights
 			reserved.

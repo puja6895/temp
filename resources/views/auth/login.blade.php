@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
    <head>
@@ -16,6 +14,23 @@
       <link rel="stylesheet" href="{{asset('admin/bower_components/Ionicons/css/ionicons.min.css')}}">
       <!-- Theme style -->
       <link rel="stylesheet" href="{{asset('admin/dist/css/AdminLTE.min.css')}}">
+
+      <link rel="shortcut icon" type="image/x-icon" href="{{ asset('icon.png') }}">
+      <style>
+      body{
+         background-image: url(login.png) !important;
+
+         position: center !important;
+
+         background-repeat: no-repeat !important;
+
+         background-size: cover !important;
+      }
+
+      .login-box-body{
+         margin-top: 33px !important;
+      }
+      </style>
       <!-- iCheck -->
       <link rel="stylesheet" href="{{asset('admin/plugins/iCheck/square/blue.css')}}">
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -30,11 +45,11 @@
    <body class="hold-transition login-page">
       <div class="login-box">
          <div class="login-logo">
-            <a href="/"><b>{{ config('app.name', 'Laravel') }}</b> Admin</a>
+            <a href="/"><b>{{ config('app.name', 'Laravel') }}</b><br><small> Simply awesome<small></a>
          </div>
          <!-- /.login-logo -->
          <div class="login-box-body">
-            <p class="login-box-msg">Sign in to Only Admin</p>
+            <p class="login-box-msg">Sign in to Your Account</p>
             <form method="POST" action="{{ route('login') }}">
              @csrf
                <div class="form-group has-feedback">

@@ -7,8 +7,8 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Dashboard
-			<small>Admin Control panel</small>
+			Welcome
+			<small>to Techtool CRM</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -41,12 +41,12 @@
 					<div class="inner">
 						<h3>{{count($customers)}}</h3>
 
-						<p>Customers</p>
+						<p>Clients</p>
 					</div>
 					<div class="icon">
 						<i class="fa fa-users"></i>
 					</div>
-					<a href="{{route('customers')}}" class="small-box-footer">All Customers <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="{{route('customers')}}" class="small-box-footer">All Clients <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 			<!-- ./col -->
@@ -56,12 +56,12 @@
 					<div class="inner">
 						<h3>{{count($purchasers)}}</h3>
 
-						<p>Purchasers</p>
+						<p>Suppliers</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-person-add"></i>
 					</div>
-					<a href="{{route('purchasers')}}" class="small-box-footer">All Purchaser <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="{{route('purchasers')}}" class="small-box-footer">All Suppliers <i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 			<!-- ./col -->
@@ -103,7 +103,7 @@
 
 					<div class="info-box-content">
 						<span class="info-box-text">Receivable</span>
-						<span class="info-box-number">{{$sell_due}}</span>
+						<span class="info-box-number"><span class="fa fa-inr"></span> {{$sell_due}}</span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
@@ -120,7 +120,7 @@
 
 					<div class="info-box-content">
 						<span class="info-box-text">Payable</span>
-						<span class="info-box-number">{{$purchase_due}}</span>
+						<span class="info-box-number"><span class="fa fa-inr"></span> {{$purchase_due}}</span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
