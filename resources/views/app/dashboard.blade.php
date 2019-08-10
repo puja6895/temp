@@ -31,7 +31,7 @@
 					<div class="icon">
 						<i class="ion ion-bag"></i>
 					</div>
-					<a href="{{route('sell')}}" class="small-box-footer">All Sales <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="{{route('sell.add')}}" class="small-box-footer">Add new Sales <i class="fa fa-plus"></i></a>
 				</div>
 			</div>
 			<!-- ./col -->
@@ -46,7 +46,7 @@
 					<div class="icon">
 						<i class="fa fa-users"></i>
 					</div>
-					<a href="{{route('customers')}}" class="small-box-footer">All Clients <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="{{route('customer.add')}}" class="small-box-footer">All new Clients <i class="fa fa fa-plus"></i></a>
 				</div>
 			</div>
 			<!-- ./col -->
@@ -61,7 +61,7 @@
 					<div class="icon">
 						<i class="ion ion-person-add"></i>
 					</div>
-					<a href="{{route('purchasers')}}" class="small-box-footer">All Suppliers <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="{{route('purchaser.add')}}" class="small-box-footer">Add New Suppliers <i class="fa fa fa-plus"></i></a>
 				</div>
 			</div>
 			<!-- ./col -->
@@ -76,7 +76,7 @@
 					<div class="icon">
 						<i class="fa fa-cart-plus"></i>
 					</div>
-					<a href="{{route('purchase')}}" class="small-box-footer">All Purchases <i class="fa fa-arrow-circle-right"></i></a>
+					<a href="{{route('purchase.add')}}" class="small-box-footer">All New Puchase <i class="fa fa fa-plus"></i></a>
 				</div>
 			</div>
 			<!-- ./col -->
