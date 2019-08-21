@@ -8,7 +8,9 @@
 	{{-- Design And Developed By TechTool India (SENTRIQO IT SOLUTIONS PVT LTD) --}}
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>{{ config('app.name', 'Laravel') }} | Dashboard</title>
+
+	<title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
+
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.7 -->
@@ -187,7 +189,7 @@
 				<!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>V</b>TD</span>
 				<!-- logo for regular state and mobile devices -->
-				<span class="logo-lg"><b>Vivekanand</b> Traders</span>
+				<span class="logo-lg"><b>{{$company_name}}</b></span>
 			</a>
 			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top">

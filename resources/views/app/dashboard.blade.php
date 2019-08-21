@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+{{--  Title  --}}
+@section('title', 'Dashboard')
+
 @section('content')
 
 <!-- Content Wrapper. Contains page content -->
