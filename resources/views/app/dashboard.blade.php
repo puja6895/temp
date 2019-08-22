@@ -42,7 +42,7 @@
 				<!-- small box -->
 				<div class="small-box bg-green">
 					<div class="inner">
-						<h3>{{count($customers)}}</h3>
+						<h3>{{$customers}}</h3>
 
 						<p>Clients</p>
 					</div>
@@ -57,7 +57,7 @@
 				<!-- small box -->
 				<div class="small-box bg-yellow">
 					<div class="inner">
-						<h3>{{count($purchasers)}}</h3>
+						<h3>{{$purchasers}}</h3>
 
 						<p>Suppliers</p>
 					</div>
