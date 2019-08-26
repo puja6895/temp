@@ -16,20 +16,12 @@ class UsersTableSeeder extends Seeder
         //
         $admin_users = [
         	[
-        		'name' => 'Ajit Singh',
-	            'email' => 'ajit@vivekanandtraders.com',	
-	            'password' => Hash::make('ajit@123'),
-        	],
-			[
-        		'name' => 'R D Singh',
-	            'email' => 'rd@vivekanandtraders.com',	
-	            'password' => Hash::make('rd@123'),
-        	],
-        	[
-        		'name' => 'Rakesh Singh',
-	            'email' => 'rakesh@gmail.com',	
-	            'password' => Hash::make('rakesh@123'),
-        	]            
+        		'name' => 'Test Admin',
+	            'email' => 'admin@test.com',	
+	            'mobile' => '9028187696',	
+	            'role_id' => 1,	
+	            'password' => Hash::make('admin@123'),
+        	]    
         ];
 
         foreach ($admin_users as $user) {
