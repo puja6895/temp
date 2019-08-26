@@ -9,6 +9,14 @@ use View;
 
 class LorryController extends Controller {
 	/**
+     * Allow Only Authenticated Users
+     */
+
+    public function __construct() {
+		$this->middleware('auth');
+	}
+	
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response

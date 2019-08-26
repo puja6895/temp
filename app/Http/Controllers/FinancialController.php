@@ -13,6 +13,13 @@ use View;
 
 class FinancialController extends Controller {
 	/**
+     * Allow Only Authenticated Users
+     */
+
+    public function __construct() {
+		$this->middleware('auth');
+    }
+	/**
 	 * Get List Of Recievables
 	 * @response: List Of Pending and Partial Sales
 	 */

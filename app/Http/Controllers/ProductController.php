@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 use View;
 
 class ProductController extends Controller {
+	
+	/**
+     * Allow Only Authenticated Users
+     */
+
+    public function __construct() {
+		$this->middleware('auth');
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
