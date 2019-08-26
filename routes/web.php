@@ -112,3 +112,15 @@ Route::get('/inventory/log', 'InventoryController@inventoryLog')->name('inventor
 Route::get('/payables', 'FinancialController@getPayables')->name('payables.list');
 Route::get('/payables/pay/{purchase_id}', 'FinancialController@payablesPayment')->name('payables.payment');
 Route::post('/payables/pay', 'FinancialController@capturePayablesPayment')->name('payables.payment.capture');
+
+#Profile Page To Update Profile and Reset Password
+
+
+Route::namespace('App\Profile')
+->name('profile.')
+->prefix('profile')
+->group(function() {
+	Route::get('/','ProfileController@index')->name('detail');
+	Route::post('/change-password','ProfileController@changePassword')->name('change.password');
+});
+
