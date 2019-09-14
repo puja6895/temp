@@ -113,9 +113,12 @@ Route::get('/payables', 'FinancialController@getPayables')->name('payables.list'
 Route::get('/payables/pay/{purchase_id}', 'FinancialController@payablesPayment')->name('payables.payment');
 Route::post('/payables/pay', 'FinancialController@capturePayablesPayment')->name('payables.payment.capture');
 
+#Recievable
+Route::get('/recievales', 'FinancialController@getRecievales')->name('recievales.list');
+Route::get('/recievales/pay/{purchase_id}', 'FinancialController@recievalesPayment')->name('recievales.payment');
+Route::post('/recievales/pay', 'FinancialController@captureRecievalesPayment')->name('recievales.payment.capture');
+
 #Profile Page To Update Profile and Reset Password
-
-
 Route::namespace('App\Profile')
 ->name('profile.')
 ->prefix('profile')

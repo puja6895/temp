@@ -299,7 +299,7 @@
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="{{route('sell')}}"><i class="fa fa-inr"></i> Recievables </a></li>
+							<li><a href="{{route('recievales.list')}}"><i class="fa fa-inr"></i> Recievables </a></li>
 							<li><a href="{{route('payables.list')}}"><i class="fa fa-inr"></i> Payables </a></li>
 							<li><a href="{{route('purchase')}}"><i class="fa fa-file"></i> Invoice List</a></li>
 						</ul>
@@ -517,7 +517,8 @@
 			//Date picker
 			$('.datepicker').datepicker({
 				format: 'dd-mm-yyyy',
-				autoclose: true
+				autoclose: true,
+				todayHighlight: true
 			})
 		})
 	</script>

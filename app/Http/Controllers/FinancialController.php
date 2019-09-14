@@ -24,7 +24,9 @@ class FinancialController extends Controller {
 	 * @response: List Of Pending and Partial Sales
 	 */
 	public function getReceivables() {
-		# code...
+		$sells = Sell::join('sell_amount')->where('status',1)->get();
+
+		return $sells;
 	}
 
 	/**
