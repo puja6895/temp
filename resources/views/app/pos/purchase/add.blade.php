@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+{{--  Title  --}}
+@section('title', 'Add Purchase')
+
 @section('content')
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

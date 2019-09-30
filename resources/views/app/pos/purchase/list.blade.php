@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+{{--  Title  --}}
+@section('title', 'Purchase list')
+
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

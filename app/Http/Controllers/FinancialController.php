@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ladger;
 use App\PaymentMode;
 use App\Purchase;
+use App\Sell;
 use App\PurchaseOrderPayment;
 use Auth;
 use DB;
@@ -24,7 +25,9 @@ class FinancialController extends Controller {
 	 * @response: List Of Pending and Partial Sales
 	 */
 	public function getReceivables() {
-		$sells = Sell::join('sell_amount')->where('status',1)->get();
+		$sells = Sell::join('sell_amounts','sell_amounts.sell_id','=','sells.sell_id')
+					->where('sells.sell_status',1)
+					->get();
 
 		return $sells;
 	}
